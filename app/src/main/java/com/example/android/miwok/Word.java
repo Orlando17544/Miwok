@@ -7,15 +7,19 @@ public class Word {
 
     private int imageResourceID = 0;
 
-    public Word(String mDefaultTranslation, String mMiwokTranslation, int imageResourceID) {
+    private int audioResourceID;
+
+    public Word(String mDefaultTranslation, String mMiwokTranslation, int imageResourceID, int audioResourceID) {
         this.mDefaultTranslation = mDefaultTranslation;
         this.mMiwokTranslation = mMiwokTranslation;
         this.imageResourceID = imageResourceID;
+        this.audioResourceID = audioResourceID;
     }
 
-    public Word(String mDefaultTranslation, String mMiwokTranslation) {
+    public Word(String mDefaultTranslation, String mMiwokTranslation, int audioResourceID) {
         this.mDefaultTranslation = mDefaultTranslation;
         this.mMiwokTranslation = mMiwokTranslation;
+        this.audioResourceID = audioResourceID;
     }
 
     public String getmDefaultTranslation() {
@@ -28,6 +32,10 @@ public class Word {
 
     public int getImageResourceID() {
         return imageResourceID;
+    }
+
+    public int getAudioResourceID() {
+        return audioResourceID;
     }
 
     public boolean hasImage() {

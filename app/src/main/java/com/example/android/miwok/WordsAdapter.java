@@ -1,12 +1,14 @@
 package com.example.android.miwok;
 
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class WordsAdapter extends RecyclerView.Adapter<WordsAdapter.ViewHolder> {
     private ArrayList<Word> words = new ArrayList<Word>();
     private int color;
+    private MediaPlayer mediaPlayer;
 
     public WordsAdapter(ArrayList<Word> words, int color) {
         this.words = words;
@@ -41,6 +44,25 @@ public class WordsAdapter extends RecyclerView.Adapter<WordsAdapter.ViewHolder> 
         } else {
             holder.getImageViewWord().setVisibility(View.GONE);
         }
+
+        holder.getLinearLayout().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer = MediaPlayer.create(view.getContext(), words.get(position).getAudioResourceID());
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        mediaPlayer.release();
+                        mediaPlayer = null;
+                    }
+                });
+            }
+        });
+    }
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
     }
 
     @Override
