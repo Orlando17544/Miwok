@@ -44,6 +44,8 @@ public class PhrasesActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mAdapter.getMediaPlayer().release();
+        if (mAdapter.getMediaPlayer() != null) {
+            mAdapter.getMediaPlayer().release();
+        }
     }
 }

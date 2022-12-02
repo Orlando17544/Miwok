@@ -42,6 +42,8 @@ public class ColorsActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mAdapter.getMediaPlayer().release();
+        if (mAdapter.getMediaPlayer() != null) {
+            mAdapter.getMediaPlayer().release();
+        }
     }
 }
